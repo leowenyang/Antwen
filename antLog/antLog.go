@@ -2,6 +2,12 @@
 //
 // Usage:
 //
+// import "github.com/leowenyang/Antwen/antLog"
+//
+// antLog.Info("test")
+// antLog.Debug("test")
+// antLog.Warning("test")
+// antLog.Error("test")
 //
 
 package antLog
