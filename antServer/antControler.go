@@ -2,4 +2,4 @@ package antServer
 
 import "net/http"
 
-type Controler func(http.ResponseWriter, *http.Request)
+type Controller func(http.ResponseWriter, *http.Request)
