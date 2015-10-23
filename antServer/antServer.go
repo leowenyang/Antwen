@@ -39,6 +39,6 @@ func StartServer() {
 	http.ListenAndServe(IPort, AntApp.Router)
 }
 
-func SetRouter(r string, f Controller) {
+func SetRouter(r string, f ControlInfter) {
 	AntApp.Router.Item[r] = f
 }
