@@ -40,5 +40,5 @@ func StartServer() {
 }
 
 func SetRouter(r string, f ControlInfter) {
-	AntApp.Router.Item[r] = f
+	AntApp.Router.Add(r, f)
 }

@@ -5,27 +5,39 @@ import (
 	"net/http"
 )
 
-type Controller struct{}
+type Context struct {
+	W http.ResponseWriter
+	R *http.Request
+}
+
+type Controller struct {
+	Ctx *Context
+}
 
 type ControlInfter interface {
-	Get(w http.ResponseWriter, r *http.Request)
-	Post(w http.ResponseWriter, r *http.Request)
-	Put(w http.ResponseWriter, r *http.Request)
-	Delete(w http.ResponseWriter, r *http.Request)
+	Init(ctx *Context)
+	Get()
+	Post()
+	Put()
+	Delete()
 }
 
-func (this *Controller) Get(w http.ResponseWriter, r *http.Request) {
-	io.WriteString(w, "404 not found")
+func (this *Controller) Init(ctx *Context) {
+	this.Ctx = ctx
 }
 
-func (this *Controller) Post(w http.ResponseWriter, r *http.Request) {
-	io.WriteString(w, "404 not found")
+func (this *Controller) Get() {
+	io.WriteString(this.Ctx.W, "404 not found")
 }
 
-func (this *Controller) Put(w http.ResponseWriter, r *http.Request) {
-	io.WriteString(w, "404 not found")
+func (this *Controller) Post() {
+	io.WriteString(this.Ctx.W, "404 not found")
 }
 
-func (this *Controller) Delete(w http.ResponseWriter, r *http.Request) {
-	io.WriteString(w, "404 not found")
+func (this *Controller) Put() {
+	io.WriteString(this.Ctx.W, "404 not found")
+}
+
+func (this *Controller) Delete() {
+	io.WriteString(this.Ctx.W, "404 not found")
 }

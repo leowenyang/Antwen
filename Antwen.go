@@ -2,7 +2,6 @@ package main
 
 import (
 	"io"
-	"net/http"
 
 	"github.com/leowenyang/Antwen/antServer"
 )
@@ -11,12 +10,21 @@ type HomeController struct {
 	antServer.Controller
 }
 
-func (this *HomeController) Get(w http.ResponseWriter, r *http.Request) {
-	io.WriteString(w, "say Bye")
+func (this *HomeController) Get() {
+	io.WriteString(this.Ctx.W, "say Home")
+}
+
+type MainController struct {
+	antServer.Controller
+}
+
+func (this *MainController) Get() {
+	io.WriteString(this.Ctx.W, "say Main")
 }
 
 func main() {
 	// route
-	antServer.SetRouter("/bye", &HomeController{})
+	antServer.SetRouter("/home", &HomeController{})
+	antServer.SetRouter("/main", &MainController{})
 	antServer.StartServer()
 }
