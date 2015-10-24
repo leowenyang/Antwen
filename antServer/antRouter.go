@@ -53,9 +53,20 @@ func (this *AntRouter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	method.Call(in)
 
 	in = make([]reflect.Value, 0)
-	if r.Method == "GET" {
+	switch r.Method {
+	case "GET":
 		method := runRouter.controllerType.MethodByName("Get")
 		method.Call(in)
-
+	case "POST":
+		method := runRouter.controllerType.MethodByName("Post")
+		method.Call(in)
+	case "PUT":
+		method := runRouter.controllerType.MethodByName("Put")
+		method.Call(in)
+	case "DELETE":
+		method := runRouter.controllerType.MethodByName("Delete")
+		method.Call(in)
+	default:
+		io.WriteString(w, "404 not found")
 	}
 }
